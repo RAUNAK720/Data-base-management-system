@@ -1,34 +1,35 @@
-# 5.2 Project Statement
+# Project Statement - Student Evaluation System
 
 ## Problem Statement
 
-Managing student marks and calculating academic performance manually can take time and may lead to calculation errors. The Student Evaluation System provides a simple menu-driven program to keep student names and marks for four subjects, then calculate and display averages and CGPA values.
+Teachers and small institutions often record student marks on paper or in loose spreadsheets and calculate averages and CGPA by hand. This is time-consuming and error-prone: names get duplicated, marks outside the valid range slip in, and results are inconsistent. There is a need for a simple, reliable tool that stores student records, checks every input, and produces accurate average and CGPA reports instantly.
 
 ## Scope of the Project
 
-The project is a basic, command-line student evaluation application. It allows the user to:
+**In scope**
 
-- Add students using their names.
-- Enter whole-number marks for four subjects, with each mark restricted to the range 0–100.
-- View the names of all students currently in the system.
-- Generate the overall average across marks entered for all students.
-- View each student's average and CGPA, or request these results for one student.
+- Registering students by unique name.
+- Recording exactly four subject marks (whole numbers, 0-100) per student.
+- Reports: overall average of all students, average and CGPA of all students, average and CGPA of one student.
+- Listing all registered students.
+- Input validation and clear error messages in a console interface.
 
-The current program stores information only while it is running. It does not save records to a file or database. It supports one set of four subject marks per student and does not include editing, deleting, authentication, or a graphical interface.
+**Out of scope (current version)**
+
+- Permanent storage (files or databases); data lasts for one session.
+- User login, roles or multi-user access.
+- Editing or deleting students, variable subject counts, grade letters or ranking.
+- Graphical or web interface.
 
 ## Target Users
 
-- Teachers who need a small, straightforward tool to record marks and review student performance.
-- Students or learners practising basic programming and wanting to understand how marks, averages, and CGPA can be handled in a program.
-- Small classroom or demonstration settings where a simple command-line solution is sufficient.
+- School and college teachers or evaluators who need quick class statistics.
+- Students learning Python who want a clear example of dictionaries, lists, loops and validation.
+- Small coaching centres needing a lightweight marks calculator.
 
 ## High-Level Features
 
-1. **Student registration** — Add a student by name and reject blank or duplicate names.
-2. **Marks entry and validation** — Enter marks for four subjects; accept only whole numbers from 0 to 100.
-3. **Student list** — Display the names of students added during the current session.
-4. **Overall average report** — Calculate the average of all subject marks entered for all students.
-5. **Performance reports** — Show a student's average and CGPA, or generate those results for all students with marks.
-6. **Menu-driven interaction** — Choose actions from a text menu and exit the program when finished.
-
-*For this program, CGPA is calculated as the student's four-subject average divided by 10.*
+1. Student management (add, view).
+2. Marks entry with strict validation (whole numbers, 0-100, four subjects).
+3. Reporting and analytics (overall average, per-student average, CGPA).
+4. Menu-driven workflow with helpful error handling for every invalid action.
