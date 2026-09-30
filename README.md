@@ -1,41 +1,100 @@
-# Data-base-management-system
+# Student Evaluation System
 
-A simple command-line student evaluation program written in Python. It lets you add students, record marks for four subjects, view the student list, and generate average and CGPA reports.
+A menu-driven, console-based Python application that lets a teacher or evaluator register students, record marks for four subjects, and generate average and CGPA reports.
 
-## Requirements
+## Overview
 
-- Python 3
-- No third-party packages are required
+Manually calculating averages and CGPA for a class is slow and error-prone. This project stores student records in memory, validates every input, and produces overall and per-student reports on demand. It is built only with core Python (dictionaries, lists, loops, conditionals and string handling), so it runs anywhere Python 3 is installed.
 
-## Run the program
+## Features
 
-Open a terminal in the folder containing `vityarthi project.py`, then run:
+- **Add a student** - rejects empty names and duplicate entries.
+- **Add marks for 4 subjects** - accepts only whole numbers from 0 to 100; invalid input cancels the entry without saving partial data.
+- **Reports**
+  - Overall average of all recorded marks.
+  - Average and CGPA of every student.
+  - Average and CGPA of one selected student.
+- **View all students** - lists every registered student.
+- **Friendly error messages** for empty database, unknown student, incomplete marks and invalid menu choices.
 
-```bash
-python "vityarthi project.py"
+CGPA is calculated as `average marks / 10` (a 10-point scale approximation).
+
+## Technologies Used
+
+- Python 3.8 or later (no external libraries)
+- Git and GitHub for version control
+
+## Project Structure
+
+```
+.
+├── student_evaluation.py     # Main application
+├── README.md                 # This file
+├── statement.md              # Problem statement, scope, users, features
+└── docs/
+    ├── diagrams/             # Architecture, workflow, use case, sequence, component, data structure
+    └── screenshots/          # Sample console sessions (sample_session.txt, edge_cases.txt)
 ```
 
-On systems where Python is invoked as `python3`:
+## Installation and Running
 
-```bash
-python3 "vityarthi project.py"
+1. Install Python 3 from https://www.python.org/downloads/ and confirm it works:
+   ```
+   python --version
+   ```
+2. Clone the repository:
+   ```
+   git clone <your-repository-url>
+   cd <repository-folder>
+   ```
+3. Run the program:
+   ```
+   python student_evaluation.py
+   ```
+   (Use `python3` on Linux/macOS if `python` is not found.)
+
+## How to Use
+
+1. Choose **1** and enter a student name.
+2. Choose **2**, enter the student name, then four whole-number marks (0-100).
+3. Choose **3** to open the reports menu and pick report 1, 2 or 3.
+4. Choose **4** to list all students.
+5. Choose **5** to exit.
+
+## Testing
+
+The project is tested with manual validation tests. Run the program and try the cases below, or replay them with piped input.
+
+| # | Action | Expected result |
+|---|--------|-----------------|
+| 1 | Add student `Asha` | `Asha added.` |
+| 2 | Add `Asha` again | `That student is already in the database.` |
+| 3 | Add an empty name | `Name cannot be empty.` |
+| 4 | Add marks before any student exists | `The database is empty.Please add a student first.` |
+| 5 | Add marks for an unknown student | `Student not found.` |
+| 6 | Enter `abc`, `-5` or `7.5` as a mark | `Please enter a whole number.` |
+| 7 | Enter `105` as a mark | `Marks must be between 0 and 100.` |
+| 8 | Marks 85, 90, 78, 92 for Asha, then per-student report | average `86.25`, CGPA `8.62` |
+| 9 | Asha (85, 90, 78, 92) + Ravi (60, 75, 80, 65), overall average | `78.12` |
+| 10 | Per-student report for a student without marks | `Enter all 4 subject marks for <name> first.` |
+| 11 | Menu choice `7` | `Please choose a number from 1 to 5.` |
+
+Expected outputs from real runs are saved in `docs/screenshots/`.
+
+## Screenshots
+
+Console transcripts of a normal session and of edge cases are in `docs/screenshots/`. Add your own terminal screenshots there and link them here, for example:
+
+```
+![Main menu](docs/screenshots/menu.png)
 ```
 
-## How to use it
+## Limitations
 
-At the main menu, choose an option by entering its number:
+- Data is stored in memory only and is lost when the program exits.
+- Re-entering marks for a student replaces the earlier marks.
+- Always exactly four subjects.
 
-1. **Add a student** — enter a non-empty name. Duplicate names are rejected.
-2. **Add marks for 4 subjects** — select an existing student and enter a whole-number mark from 0 to 100 for each subject.
-3. **Reports** — choose one of the available reports:
-   - Overall average across all marks entered
-   - Average and CGPA for each student with marks
-   - Average and CGPA for one selected student
-4. **View all students** — list the names currently in the session.
-5. **Exit** — quit the program.
+## Future Enhancements
 
-The average is calculated from the four subject marks. CGPA is calculated as `average / 10`. If a student's marks are entered again, the new four marks replace the previous set.
-
-## Data storage
-
-Student records are kept in memory while the program runs. They are not saved to a file or database, so the records are cleared when you exit.
+Save data to a file or database, split the code into modules with unit tests, add edit/delete of students, grade classification and ranking, and a GUI or web interface.
